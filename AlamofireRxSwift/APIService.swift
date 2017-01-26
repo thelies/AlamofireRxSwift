@@ -17,9 +17,11 @@ class APIService {
     
     func request(url: String) -> Observable<JSON> {
         return Observable.create{ observer in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             Alamofire.request(url)
                 .validate(statusCode: 200..<300)
                 .responseJSON { responseData in
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     if responseData.result.value != nil {
                         observer.onNext(JSON(responseData.result.value ?? ""))
                         observer.onCompleted()
