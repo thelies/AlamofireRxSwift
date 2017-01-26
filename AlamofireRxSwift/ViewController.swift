@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SDWebImage
 
 class ViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class ViewController: UIViewController {
         
         let users = APIService.sharedInstance.getUsers()
         users.bindTo(tableView.rx.items(cellIdentifier: UserCell.identifier, cellType: UserCell.self)) { (row, element, cell) in
+            let avatarUrl = NSURL(string: element.avatarUrl)
+            cell.avatarImage.sd_setImage(with: avatarUrl as URL!)
             cell.nameLabel.text = element.name
             cell.linkLabel.text = element.url
         }
