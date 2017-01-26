@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
     
@@ -19,26 +20,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // tableView.delegate = self
-        // tableView.dataSource = self
-        // Do any additional setup after loading the view, typically from a nib.
+        
         let users = APIService.sharedInstance.getUsers()
-        users.subscribe(
-            onNext: { json in
-                print(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-                print(json)
-                print(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-            },
-            onError: { error in
-                print(error)
-            },
-            onCompleted: {
-                print("Completed")
-            },
-            onDisposed: {
-                print("Disposed")
-            }
-        )
+        users.bindTo(tableView.rx.items(cellIdentifier: UserCell.identifier, cellType: UserCell.self)) { (row, element, cell) in
+            cell.nameLabel.text = element.name
+            cell.linkLabel.text = element.url
+        }
         .addDisposableTo(disposeBag)
     }
 

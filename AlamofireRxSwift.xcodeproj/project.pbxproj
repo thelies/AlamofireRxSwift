@@ -14,6 +14,7 @@
 		35A9B1F61E39A3D900ED793D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35A9B1F51E39A3D900ED793D /* Assets.xcassets */; };
 		35A9B1F91E39A3D900ED793D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35A9B1F71E39A3D900ED793D /* LaunchScreen.storyboard */; };
 		35A9B2011E39A4F100ED793D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A9B2001E39A4F100ED793D /* APIService.swift */; };
+		35FB8CC51E39D7BA0063BCF0 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FB8CC41E39D7BA0063BCF0 /* UserCell.swift */; };
 		BD2F4EED9CC87209A9DB19D3 /* Pods_AlamofireRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5CD1CE4FE9B1231575A7275 /* Pods_AlamofireRxSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		35A9B1F81E39A3D900ED793D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35A9B1FA1E39A3D900ED793D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35A9B2001E39A4F100ED793D /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		35FB8CC41E39D7BA0063BCF0 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		52A816F6885A0EB81F314462 /* Pods-AlamofireRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlamofireRxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlamofireRxSwift/Pods-AlamofireRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		F5CD1CE4FE9B1231575A7275 /* Pods_AlamofireRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlamofireRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				35A9B1FA1E39A3D900ED793D /* Info.plist */,
 				35A9B2001E39A4F100ED793D /* APIService.swift */,
 				3541462F1E39C3C400D6F749 /* UserModel.swift */,
+				35FB8CC41E39D7BA0063BCF0 /* UserCell.swift */,
 			);
 			path = AlamofireRxSwift;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				35A9B1F11E39A3D900ED793D /* ViewController.swift in Sources */,
 				35A9B2011E39A4F100ED793D /* APIService.swift in Sources */,
 				354146301E39C3C400D6F749 /* UserModel.swift in Sources */,
+				35FB8CC51E39D7BA0063BCF0 /* UserCell.swift in Sources */,
 				35A9B1EF1E39A3D900ED793D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
