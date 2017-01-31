@@ -13,20 +13,23 @@ import SwiftyJSON
 
 class APIService {
     
+    let baseUrl = "https://api.github.com"
+    
     static let sharedInstance = APIService()
     
-    func request(url: String) -> Observable<JSON> {
+    func request(url: String, method: HTTPMethod) -> Observable<JSON> {
         return Observable.create{ observer in
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            Alamofire.request(url)
+            Alamofire.request(url, method: method)
                 .validate(statusCode: 200..<300)
                 .responseJSON { responseData in
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    if responseData.result.value != nil {
-                        observer.onNext(JSON(responseData.result.value ?? ""))
+                    switch responseData.result {
+                    case .success(let value):
+                        observer.onNext(JSON(value))
                         observer.onCompleted()
-                    } else {
-                        observer.onError(responseData.result.error!)
+                    case .failure(let error):
+                        observer.onError(error)
                     }
                 }
             return Disposables.create()
@@ -34,8 +37,8 @@ class APIService {
     }
     
     func getUsers() -> Observable<[User]> {
-        let url = "https://api.github.com/users"
-        return request(url: url).map { responseJson -> [User] in
+        let url = "\(baseUrl)/users"
+        return request(url: url, method: .get).map { responseJson -> [User] in
             return responseJson.map {User(json: $0.1)}
         }
     }
