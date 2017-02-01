@@ -9,14 +9,20 @@
 import Foundation
 import SwiftyJSON
 import RxSwift
+import RealmSwift
 
-struct User {
-    let id: Int
-    let name: String
-    let url: String
-    let avatarUrl: String
+class User: Object {
+    dynamic var id = 0
+    dynamic var name = ""
+    dynamic var url = ""
+    dynamic var avatarUrl = ""
     
-    init(json: JSON) {
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    required convenience init(json: JSON) {
+        self.init()
         self.id = json["id"].intValue
         self.name = json["login"].stringValue
         self.url = json["url"].stringValue

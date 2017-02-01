@@ -10,6 +10,13 @@ import Foundation
 import Alamofire
 import RxSwift
 import SwiftyJSON
+import RxRealm
+import RealmSwift
+
+enum RequestResult {
+    case success
+    case error
+}
 
 class APIService {
     
@@ -36,10 +43,31 @@ class APIService {
         }
     }
     
-    func getUsers() -> Observable<[User]> {
+    func fetchUsers() -> Observable<RequestResult> {
         let url = "\(baseUrl)/users"
-        return request(url: url, method: .get).map { responseJson -> [User] in
-            return responseJson.map {User(json: $0.1)}
+         return request(url: url, method: .get)
+            .map { json -> RequestResult in
+                let realm = try! Realm()
+                try! realm.write {
+                    for item in json {
+                        let user = User(json: item.1)
+                        realm.create(User.self, value: user, update: true)
+                    }
+                }
+            return RequestResult.success
+        }
+    }
+    
+    func fetchUserById(id: Int) -> Observable<RequestResult> {
+        let url = "\(baseUrl)/users/\(id)"
+        return request(url: url, method: .get)
+            .map { json -> RequestResult in
+                let realm = try! Realm()
+                try! realm.write {
+                    let user = User(json: json)
+                    realm.create(User.self, value: user, update: true)
+                }
+                return RequestResult.success
         }
     }
 }

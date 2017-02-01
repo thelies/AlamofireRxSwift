@@ -11,5 +11,6 @@ target 'AlamofireRxSwift' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SDWebImage'
+  pod 'RxRealm'
 
 end
